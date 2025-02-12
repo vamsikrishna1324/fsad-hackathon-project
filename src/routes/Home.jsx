@@ -68,6 +68,7 @@ const Home = () => {
               </div>
             </div>
           ))}
+            <a href="create-tournament" className="primary-btn"><button className="card-button">Create new Tournament</button></a>
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/GamingGearSection.css'; // Ensure this CSS file exists
+import '../styles/GamingGearSection.css'; 
 
 const GamingGearSection = () => {
   const products = [
@@ -30,7 +30,7 @@ const GamingGearSection = () => {
           ))}
         </div>
 
-        <a href="#" className="shop-now-btn">Shop Now</a>
+        <a href="/gaming-gear" className="shop-now-btn">Shop Now</a>
       </div>
     </section>
   );

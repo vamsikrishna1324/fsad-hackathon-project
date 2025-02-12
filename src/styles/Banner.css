@@ -1,26 +1,24 @@
 /* Banner.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-
+/* Banner Wrapper - Full-width container */
 .banner-wrapper {
-  background: #0a0a0a;
-  padding: 1rem 0; 
+  background: #0a0a0a; /* Match your page's dark background */
+  padding: 1rem 0; /* Adjust vertical padding as needed */
   display: flex;
   justify-content: center;
-  width: 100%; 
+  width: 100%; /* Ensure it spans the full width */
 }
 
-
+/* Banner - Full-screen width */
 .banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #2e1a47, #4a2a6b);
-  padding: 1.5rem 5%; /* Reduced padding */
-  border-radius: 16px;
-  margin: 0 auto; /* Removed extra margin */
-  max-width: 1000px; /* Reduced max-width */
-  width: 95%; /* Added width constraint */
+  background: linear-gradient(135deg, #0a0a0a, #4a2a6b);
+  padding: 1.5rem 5%; /* Adjust padding as needed */
+  width: 100vw; /* Ensure full width of viewport */
+  max-width: none; /* Remove max-width constraint */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   position: relative; /* For proper containment */
@@ -101,12 +99,12 @@
 
 /* Right Section: Gaming Character */
 .banner-right {
-  max-width: 35%; /* Adjusted for better balance */
+  max-width: 50%; /* Adjusted for better balance */
 }
 
 .banner-character {
   width: 100%;
-  max-width: 350px; /* Reduced character size */
+  max-width: 400px; /* Adjust character size */
   height: auto;
   animation: float 3s ease-in-out infinite;
 }
