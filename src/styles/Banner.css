@@ -1,0 +1,155 @@
+/* Banner.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+.banner-wrapper {
+  background: #0a0a0a;
+  padding: 1rem 0; 
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+}
+
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #2e1a47, #4a2a6b);
+  padding: 1.5rem 5%; /* Reduced padding */
+  border-radius: 16px;
+  margin: 0 auto; /* Removed extra margin */
+  max-width: 1000px; /* Reduced max-width */
+  width: 95%; /* Added width constraint */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative; /* For proper containment */
+}
+
+/* Left Section: Logo and Text */
+.banner-left {
+  max-width: 55%; /* Adjusted for better proportion */
+}
+
+.banner-logo {
+  width: 100px; /* Reduced logo size */
+  margin-bottom: 1rem; /* Reduced spacing */
+}
+
+.banner-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem; /* Reduced font size */
+  font-weight: 700;
+  color: transparent;
+  background: linear-gradient(90deg, #ffff00, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1.3;
+  margin-bottom: 1.5rem; /* Reduced spacing */
+}
+
+.game-name {
+  color: #00ffff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 1rem; /* Reduced button spacing */
+}
+
+.btn-twitch,
+.btn-twitter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem; /* Reduced button padding */
+  border: none;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem; /* Reduced font size */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-twitch {
+  background: #9146ff;
+  color: #fff;
+}
+
+.btn-twitch:hover {
+  background: #7c3aed;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(145, 70, 255, 0.3);
+}
+
+.btn-twitter {
+  background: #1da1f2;
+  color: #fff;
+}
+
+.btn-twitter:hover {
+  background: #1991db;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(29, 161, 242, 0.3);
+}
+
+.icon {
+  font-size: 1rem; /* Reduced icon size */
+}
+
+/* Right Section: Gaming Character */
+.banner-right {
+  max-width: 35%; /* Adjusted for better balance */
+}
+
+.banner-character {
+  width: 100%;
+  max-width: 350px; /* Reduced character size */
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .banner {
+    padding: 1.5rem;
+  }
+
+  .banner-heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner-left,
+  .banner-right {
+    max-width: 100%;
+  }
+
+  .banner-logo {
+    margin: 0 auto 1rem; /* Center logo */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-heading {
+    font-size: 1.4rem;
+  }
+
+  .banner-buttons {
+    flex-direction: column;
+  }
+}
