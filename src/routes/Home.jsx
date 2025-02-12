@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css'; // Main styles
-import '../styles/Cards.css'; // Card-specific styles
-import '../styles/GamingGearSection.css'; // Import Gaming Gear CSS
-import GamingGearSection from '../components/GamingGearSection'; // Correct Import
-import Banner from '../components/Banner'; // Import the Banner component
+import '../App.css';
+import '../styles/Cards.css';
+import '../styles/GamingGearSection.css';
+import GamingGearSection from '../components/GamingGearSection';
+import Banner from '../components/Banner';
+import TopGroups from '../components/TopGroups'; 
 
 const Home = () => {
   const tournaments = [
@@ -31,12 +32,12 @@ const Home = () => {
         </div>
 
         <div className="navbar-links">
-          <Link to="/play">Play</Link>
-          <Link to="/leaderboard">Leaderboard</Link>
-          <Link to="/groups">Groups</Link>
-          <Link to="/gaming-gear">Gaming Gear</Link>
-          <Link to="/business">Business</Link>
-          <Link to="/more">More</Link>
+          <Link to="/play">💫Play</Link>
+          <Link to="/leaderboard">🏆Leaderboard</Link>
+          <Link to="/groups">🤲Groups</Link>
+          <Link to="/gaming-gear">⚙️Gaming Gear</Link>
+          <Link to="/business">🤝Business</Link>
+          <Link to="/more">🌈More</Link>
         </div>
 
         <div className="navbar-actions">
@@ -68,15 +69,19 @@ const Home = () => {
               </div>
             </div>
           ))}
-            <a href="create-tournament" className="primary-btn"><button className="card-button">Create new Tournament</button></a>
+          <a href="create-tournament" className="primary-btn">
+            <button className="card-button">Create new Tournament</button>
+          </a>
         </div>
       </section>
 
       {/* Gaming Gear Section */}
       <GamingGearSection />
 
-      {/* Banner Section (Added Below Gaming Gear) */}
+      {/* Banner Section */}
       <Banner />
+         {/* Top Gaming Groups Section */}
+         <TopGroups /> {/* Added the TopGroups Component Here */}
     </div>
   );
 };
