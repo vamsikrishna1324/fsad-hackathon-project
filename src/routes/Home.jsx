@@ -6,8 +6,10 @@ import '../styles/GamingGearSection.css';
 import GamingGearSection from '../components/GamingGearSection';
 import Banner from '../components/Banner';
 import TopGroups from '../components/TopGroups'; 
+import ExpandedCard from '../components/ExpandedCard';
 
 const Home = () => {
+  
   const tournaments = [
     { img: "/game1.jpg", title: "Valorant Championship", date: "15 Sept 2023" },
     { img: "/game2.jpg", title: "CS:GO Showdown", date: "20 Sept 2023" },
@@ -22,7 +24,6 @@ const Home = () => {
 
   return (
     <div className="app">
-      {/* Navigation Bar */}
       <nav className="navbar">
         <div className="navbar-logo">
           <Link to="/" className="logo-container">
@@ -30,7 +31,6 @@ const Home = () => {
             <span className="logo-text">PROARENA</span>
           </Link>
         </div>
-
         <div className="navbar-links">
           <Link to="/play">💫Play</Link>
           <Link to="/leaderboard">🏆Leaderboard</Link>
@@ -39,14 +39,12 @@ const Home = () => {
           <Link to="/business">🤝Business</Link>
           <Link to="/more">🌈More</Link>
         </div>
-
         <div className="navbar-actions">
           <Link to="/create-tournament" className="btn-create">Create Tournament</Link>
           <Link to="/login" className="btn-login">LOGIN/SIGN UP</Link>
         </div>
       </nav>
 
-      {/* Hero Section */}
       <main className="main-content">
         <div className="hero-content">
           <h1 className="hero-title">Next-Level Gaming Arena</h1>
@@ -54,7 +52,6 @@ const Home = () => {
         </div>
       </main>
 
-      {/* Featured Tournaments Section */}
       <section className="tournaments-section">
         <h2 className="section-title">Featured Tournaments</h2>
         <div className="cards-grid">
@@ -65,23 +62,28 @@ const Home = () => {
               <div className="card-content">
                 <h3 className="card-title">{tournament.title}</h3>
                 <p className="card-subtitle">Registration Starts: {tournament.date}</p>
-                <button className="card-button">Registration Open</button>
+                <div className="card-buttons">
+                <a href="../components/ExpandedCard">
+                  <button className="card-view-but">View</button>
+                  <a href="/ExpandedCard">
+                  </a>
+  <button className="card-button">Registration Open</button>
+</a>
+
+                </div>
               </div>
             </div>
           ))}
-          <a href="create-tournament" className="primary-btn">
-            <button className="card-button">Create new Tournament</button>
-          </a>
+          <a href="/create-tournament" className="primary-btn">
+  Create new Tournament
+</a>
+
         </div>
       </section>
 
-      {/* Gaming Gear Section */}
       <GamingGearSection />
-
-      {/* Banner Section */}
       <Banner />
-         {/* Top Gaming Groups Section */}
-         <TopGroups /> {/* Added the TopGroups Component Here */}
+      <TopGroups />
     </div>
   );
 };

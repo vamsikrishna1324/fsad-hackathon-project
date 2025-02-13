@@ -1,63 +1,87 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import '../styles/Register.css';
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('PLAYER');
-  const navigate = useNavigate();
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post('http://localhost:8080/api/auth/register', {
-        email,
-        password,
-        role,
-      });
-      navigate('/login');
-    } catch (error) {
-      console.error('Registration failed:', error);
-    }
-  };
-
   return (
-    <div className="container mt-5" data-aos="fade-up">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div className="mb-3" data-aos="fade-right" data-aos-delay="200">
-          <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+    <div className="register-page">
+      {/* Hero Section */}
+      <div className="hero-section">
+        <div className="hero-content">
+          <h1 className="tournament-title">Valorant Championship 5v5 Summer Tournament</h1>
+          <p className="tournament-subtitle">Join the ultimate Championship showdown!</p>
+          <div className="tournament-details">
+            <div className="detail-item">
+              <span className="detail-label">Date:</span>
+              <span className="detail-value">August 15, 2023</span>
+            </div>
+            <div className="detail-item">
+              <span className="detail-label">Prize Pool:</span>
+              <span className="detail-value">$5,000</span>
+            </div>
+            <div className="detail-item">
+              <span className="detail-label">Format:</span>
+              <span className="detail-value">1v1</span>
+            </div>
+          </div>
         </div>
-        <div className="mb-3" data-aos="fade-left" data-aos-delay="300">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+      </div>
+
+      {/* Registration Form */}
+      <div className="registration-form">
+        <h2 className="form-title">Register Now</h2>
+        <form>
+          <div className="form-group">
+            <label htmlFor="username">In-Game Username</label>
+            <input type="text" id="username" placeholder="Enter your in-game username" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="region">Region</label>
+            <select id="region" required>
+              <option value="">Select your region</option>
+              <option value="na">North America</option>
+              <option value="eu">Europe</option>
+              <option value="asia">Asia</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button type="submit" className="submit-btn">Register</button>
+        </form>
+      </div>
+
+      {/* Tournament Details Section */}
+      <div className="tournament-info">
+        <h2 className="info-title">Tournament Details</h2>
+        <div className="info-grid">
+          <div className="info-card">
+            <h3>Rules</h3>
+            <ul>
+              <li>Best of 3 matches</li>
+              <li>No banned cards</li>
+              <li>Single elimination</li>
+            </ul>
+          </div>
+          <div className="info-card">
+            <h3>Prizes</h3>
+            <ul>
+              <li>1st Place: $3,000</li>
+              <li>2nd Place: $1,500</li>
+              <li>3rd Place: $500</li>
+            </ul>
+          </div>
+          <div className="info-card">
+            <h3>Schedule</h3>
+            <ul>
+              <li>Registration Deadline: August 10</li>
+              <li>Tournament Start: August 15</li>
+              <li>Finals: August 20</li>
+            </ul>
+          </div>
         </div>
-        <div className="mb-3" data-aos="fade-up" data-aos-delay="400">
-          <label>Role</label>
-          <select
-            className="form-control"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="PLAYER">Player</option>
-            <option value="ORGANIZER">Organizer</option>
-            <option value="ADMIN">Admin</option>
-          </select>
-        </div>
-        <button type="submit" className="btn btn-primary" data-aos="fade-up" data-aos-delay="500">Register</button>
-      </form>
+      </div>
     </div>
   );
 };
