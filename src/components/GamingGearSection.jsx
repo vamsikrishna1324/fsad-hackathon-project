@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/GamingGearSection.css'; 
+import '../styles/GamingGearSection.css';
 
 const GamingGearSection = () => {
   const products = [
@@ -9,7 +9,8 @@ const GamingGearSection = () => {
     { img: "/product4.jpg", name: "TKOOFN RGB Large Mouse Pad", category: "Furniture", price: "$399.99" },
     { img: "/product5.jpg", name: "Call of Duty: Modern Warfare", category: "Game", price: "$399.99" },
     { img: "/product6.jpg", name: "Huntsman Mini 60% Gaming Keyboard", category: "Gaming Keyboard", price: "$399.99" }
-  ];  
+  ];
+
   return (
     <section className="gaming-gear-section">
       <div className="gear-container">
@@ -26,6 +27,7 @@ const GamingGearSection = () => {
                 <p className="gear-category">{product.category}</p>
                 <p className="gear-price">{product.price}</p>
               </div>
+              <button className="gear-button">Buy</button>
             </div>
           ))}
         </div>
