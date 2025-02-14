@@ -187,3 +187,42 @@
 .back-link a:hover {
   color: #00c8a3;
 }
+
+.play-audio-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: #00c8a3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.play-audio-btn:hover {
+  background: #009978;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tournament-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .registration-form {
+    width: 90%;
+  }
+
+  .tournament-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 90%;
+  }
+}

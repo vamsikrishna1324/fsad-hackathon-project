@@ -13,9 +13,106 @@ const tournaments = [
     description: "The ultimate Valorant showdown featuring top teams worldwide.",
     rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
     prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
-    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
   },
+  {
+    id: 2,
+    title: "CS:GO Showdown",
+    date: "16 Sept 2023",
+    video: "/videos/CSGO-Showdown.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "An intense Counter-Strike: Global Offensive battle where elite teams compete for supremacy.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 3,
+    title: "Fortnite Battle Royale",
+    date: "17 Sept 2023",
+    video: "/videos/Fortnite-Battle.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A high-stakes Fortnite competition featuring the best builders and shooters in a last-man-standing showdown.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 4,
+    title: "League of Legends Clash",
+    date: "19 Sept 2023",
+    video: "/videos/lol.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A strategic face-off between top-tier League of Legends teams, fighting for glory on the Rift.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 5,
+    title: "Delta Force Tournament",
+    date: "20 Sept 2023",
+    video: "/videos/delta.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A tactical warfare competition in Delta Force, where precision and teamwork decide the champion.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 6,
+    title: "Apex Legends Showdown",
+    date: "21 Sept 2023",
+    video: "/videos/apex.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A fast-paced Apex Legends tournament where squads battle to be the last ones standing in the Outlands.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 7,
+    title: "Overwatch 2 Tournament",
+    date: "22 Sept 2023",
+    video: "/videos/ow.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A dynamic Overwatch 2 contest where teams showcase skill, coordination, and hero mastery.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 8,
+    title: "PUBG PC Challenge",
+    date: "23 Sept 2023",
+    video: "/videos/pubg.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: "A thrilling PUBG PC competition where survival instincts and sharpshooting skills determine the winner.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  },
+  {
+    id: 9,
+    title: "Marvel Rivals Tournament",
+    date: "24 Sept 2023",
+    video: "/videos/marvel.mp4",
+    prize: "$50,000",
+    format: "5v5",
+    description: " A spectacular battle in Marvel Rivals, where iconic heroes and villains clash in team-based combat.",
+    rules: ["Best of 3 matches", "No restricted agents", "Single elimination"],
+    prizes: ["1st: $30,000", "2nd: $15,000", "3rd: $5,000"],
+    schedule: ["Reg Ends: 10 Sept", "Group Stage: 12 Sept", "Finals: 15 Sept"]
+  }
 ];
+
 
 const TournamentRegister = () => {
   const { tournamentId } = useParams();
@@ -27,22 +124,34 @@ const TournamentRegister = () => {
     region: "",
   });
 
-  if (!tournament)
-    return <div className="p-8 text-red-500 text-xl">Tournament not found!</div>;
+  const [isMuted, setIsMuted] = useState(true); // State to control muted audio
 
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Registration submitted for ${tournament.title}!`);
   };
 
+  const handlePlayAudio = () => {
+    setIsMuted(false); // Unmute the video
+  };
+
+  if (!tournament)
+    return <div className="p-8 text-red-500 text-xl">Tournament not found!</div>;
+
   return (
     <div className="register-container">
       {/* Video Background */}
       <div className="video-background">
-        <video autoPlay loop muted className="video-content">
+        <video autoPlay loop muted={isMuted} className="video-content">
           <source src={tournament.video} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         <div className="overlay"></div>
+        {isMuted && (
+          <button onClick={handlePlayAudio} className="play-audio-btn">
+            Play Audio
+          </button>
+        )}
       </div>
 
       {/* Main Content */}
