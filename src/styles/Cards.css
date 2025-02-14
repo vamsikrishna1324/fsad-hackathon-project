@@ -2,7 +2,7 @@
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-rows: 1fr; /* Ensures equal row height */
+  grid-auto-rows: 1fr;
   gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
@@ -21,26 +21,31 @@
   flex-direction: column;
   overflow: hidden;
   height: 100%;
-  min-height: 400px; /* Fallback for older browsers */
+  min-height: 400px;
 }
 
-/* Card Content Section */
-.card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-  gap: 0.8rem; /* Consistent spacing between elements */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Card Image Section */
+/* Card Image */
 .card-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
   margin-bottom: 1rem;
+}
+
+/* Card Content */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  gap: 0.8rem;
 }
 
 /* Buttons Wrapper */
@@ -62,13 +67,63 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: none;
+  border: 2px solid #00cc44; /* Softer green */
   color: white;
+  background: #0056b3; /* Slightly muted blue */
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.card-button:hover, .card-view-but:hover {
+  background: #003366;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Featured Badge */
+.featured-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: gold;
+  color: black;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* Primary Button */
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #00ffd5, #00b894);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 213, 0.3);
+  min-width: 200px;
+  max-width: 280px;
+  height: 60px;
+  margin: 2rem auto;
+  border: none;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: linear-gradient(135deg, #00e6b0, #009473);
+  box-shadow: 0 6px 20px rgba(0, 255, 213, 0.4);
+  transform: scale(1.05);
 }
 
 /* Responsive Adjustments */
@@ -89,95 +144,27 @@
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
+
+  .primary-btn {
+    width: 100%;
+    max-width: 280px;
+    height: 50px;
+    font-size: 0.9rem;
+    margin: 1.5rem auto;
+  }
 }
 
 @media (max-width: 480px) {
   .cards-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .card-buttons {
     flex-direction: column;
   }
-  
+
   .card-button, .card-view-but {
     max-width: none;
     width: 100%;
   }
-}
-.primary-btn {
-  display: inline-flex; /* Use flex for better alignment */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #00ffd5, #00b894);
-  color: white;
-  font-family: 'Orbitron', sans-serif;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 255, 213, 0.3);
-  height: 80px; /* Fixed height */
-  width: 280px; /* Fixed width */
-  margin: 2rem auto; /* Center the button horizontally */
-  position: relative; /* Remove unnecessary positioning */
-  left: auto; /* Reset left positioning */
-  transform: none; /* Reset transform */
-  border: none; /* Ensure no default border */
-  cursor: pointer; /* Add pointer cursor for interactivity */
-}
-
-.primary-btn:hover {
-  background: linear-gradient(135deg, #00e6b0, #009473);
-  box-shadow: 0 6px 20px rgba(0, 255, 213, 0.4);
-  transform: scale(1.05); /* Add hover scaling effect */
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .primary-btn {
-    width: 100%; /* Full width on smaller screens */
-    max-width: 280px; /* Limit maximum width */
-    height: 60px; /* Slightly reduce height for mobile */
-    font-size: 0.9rem; /* Adjust font size for smaller screens */
-    margin: 1.5rem auto; /* Adjust margin for mobile */
-  }
-}
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
-}
-.card-button, .card-view-but {
-  background: #0000ff;
-  color: rgb(255, 255, 255);
-  border: 2px solid rgb(0, 255, 4);
-  text-decoration: none; /* Removes underline */
-  display: inline-block;
-}
-
-.card-button:hover, .card-view-but:hover {
-  background: #003366;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-}
-.featured-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: gold;
-  color: black;
-  padding: 5px 10px;
-  font-weight: bold;
-  border-radius: 5px;
 }

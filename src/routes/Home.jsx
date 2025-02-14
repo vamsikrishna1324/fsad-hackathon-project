@@ -5,7 +5,7 @@ import GamingGearSection from '../components/GamingGearSection';
 import Banner from '../components/Banner';
 import TopGroups from '../components/TopGroups'; 
 import Navbar from '../components/Navbar';
-import TournamentCards from '../components/TournamentCards';
+import TournamentCards from '../components/TournamentsSection';
 
 const Home = () => {
   return (
