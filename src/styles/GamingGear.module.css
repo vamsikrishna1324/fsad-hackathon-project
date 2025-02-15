@@ -1,0 +1,132 @@
+/* General Page Styling */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background-color: #0f0f0f; /* Dark background */
+    color: white;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Header Styling */
+  .header {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* Grid Layout for Products */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* Product Card */
+  .card {
+    background: #181818;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px -3px rgba(149, 120, 237, 0.2);
+  }
+  
+  /* Product Image Container */
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-color: #222; /* Fallback for missing images */
+  }
+  
+  /* Favorite Button */
+  .favoriteButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .favoriteButton:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .heartIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #ffffff;
+  }
+  
+  .heartIcon.favorited {
+    color: #ff0000; /* Red for favorited items */
+    fill: currentColor;
+  }
+  
+  /* Product Info */
+  .productInfo {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .productTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+  }
+  
+  .productPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #00ff99; /* Neon green for price */
+  }
+  
+  /* Loading State */
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #bbb;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  
+    .imageContainer {
+      height: 200px;
+    }
+  
+    .header {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .header {
+      font-size: 1.75rem;
+    }
+  }
