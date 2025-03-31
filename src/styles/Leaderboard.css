@@ -1,0 +1,86 @@
+/* Leaderboard Page */
+.leaderboard-page {
+    padding: 20px;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .leaderboard-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Leaderboard Container */
+  .leaderboard-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Leaderboard Table */
+  .leaderboard-table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .leaderboard-table th {
+    background-color: #00c8a3;
+    color: white;
+    font-size: 1.1rem;
+  }
+  
+  .leaderboard-table tr:nth-child(even) {
+    background-color: #333333;
+  }
+  
+  .leaderboard-table tr:hover {
+    background-color: #444444;
+  }
+  
+  /* Login Prompt */
+  .login-prompt {
+    margin-top: 20px;
+  }
+  
+  .login-prompt p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .login-prompt button {
+    padding: 10px 20px;
+    background-color: #00c8a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .login-prompt button:hover {
+    background-color: #009978;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .leaderboard-table {
+      width: 100%;
+    }
+  
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 10px;
+    }
+  }

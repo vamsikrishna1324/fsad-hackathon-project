@@ -12,12 +12,14 @@ import More from './routes/More';
 import CreateTournament from './routes/CreateTournament';
 import Play from './routes/Play';
 import TournamentRegister from './routes/TournamentRegister'; // Correct import
+import Signup from './routes/Signup';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/register/:tournamentId" element={<TournamentRegister />} /> {/* Dynamic route */}
       <Route path="/register" element={<Register />} /> {/* Keep this after the dynamic route */}
       <Route path="/dashboard" element={<Dashboard />} />
