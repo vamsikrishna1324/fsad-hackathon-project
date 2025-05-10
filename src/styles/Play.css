@@ -1,0 +1,267 @@
+.play-page {
+    padding: 2rem;
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: white;
+  }
+  
+  .play-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .game-categories button {
+    margin: 0 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 20px;
+    background: #2a2a2a;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .game-categories button.active {
+    background: #00c8a3;
+    color: black;
+  }
+  
+  .play-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+  }
+  
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    background: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .game-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .game-info {
+    padding: 1rem;
+  }
+  
+  .game-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .play-button {
+    background: #00c8a3;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .social-sidebar {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .friends-list {
+    margin-bottom: 2rem;
+  }
+  
+  .friend-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  
+  .status-dot.online {
+    background: #00c8a3;
+  }
+  
+  .status-dot.offline {
+    background: #666;
+  }
+  
+  .invite-button {
+    margin-left: auto;
+    background: #333;
+    color: white;
+    border: 1px solid #00c8a3;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #2a2a2a;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .modal-options button {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+  
+  .create-room {
+    background: #00c8a3;
+    color: black;
+  }
+  
+  .join-room {
+    background: #333;
+    color: white;
+    border: 2px solid #00c8a3 !important;
+  }
+  /* Game Embed Styles */
+.game-embed-container {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    margin-top: 1rem;
+    border: 2px solid #00c8a3;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .game-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  /* Game Session Styles */
+  .game-session {
+    padding: 2rem;
+  }
+  
+  .session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .session-code {
+    background: #2a2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Player Lobby */
+  .lobby-screen {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem auto;
+    max-width: 300px;
+  }
+  
+  .player-item {
+    background: #2a2a2a;
+    padding: 0.8rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Enhanced Game Cards */
+  .game-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+  
+  .game-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  .multiplayer-tag {
+    background: #00c8a322;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .multiplayer-tag.active {
+    background: #00c8a3;
+    color: black;
+  }
+  
+  /* Friend List Enhancements */
+  .friend-avatar {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
+  
+  .friend-name {
+    flex-grow: 1;
+  }
