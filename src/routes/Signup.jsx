@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/Signup.css';
-import logo from '/logo.png'; // Adjusted import path
+import '../styles/signup.css';
+import logo from '/public/logo-gameing.png'; // Adjusted import path
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;

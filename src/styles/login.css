@@ -26,6 +26,16 @@
   color: #00c8a3;
 }
 
+/* Login Header (Image) */
+.login-header {
+  margin-bottom: 1.5rem;
+}
+
+.login-logo {
+  max-width: 150px;
+  height: auto;
+}
+
 /* Error Message */
 .error-message {
   color: #ff6b6b;
@@ -52,7 +62,7 @@
   border: 1px solid #444;
   border-radius: 5px;
   background-color: #333;
-  color: rgb(255, 255, 255);
+  color: white;
   font-size: 1rem;
 }
 
@@ -76,6 +86,11 @@
 
 .btn-primary:hover {
   background-color: #009978;
+}
+
+.btn-primary:disabled {
+  background-color: #666;
+  cursor: not-allowed;
 }
 
 /* Signup Link */

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Login.css';
-import logo from '/logo.png'; // Adjusted import path
+import logo from '/public/logo.png'; // Adjusted import path
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -75,8 +75,8 @@ const Login = () => {
           </button>
         </form>
         <div className="signup-link" data-aos="fade-up" data-aos-delay="500">
-  Don't have an account? <Link to="Signup">Sign up</Link>
-</div>
+          Don't have an account? <Link to="/signup">Sign up</Link>
+        </div>
       </div>
     </div>
   );
