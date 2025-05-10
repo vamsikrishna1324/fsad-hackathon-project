@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/Login.css';
 import logo from '/public/logo.png'; // Adjusted import path
 
@@ -12,24 +12,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
 
-    try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
-        email,
-        password,
-      });
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard');
-    } catch (error) {
-      const message = error.response?.data?.message || 'Login failed. Please try again.';
-      setError(message);
-    } finally {
-      setIsLoading(false);
+  try {
+    const response = await axios.post('http://localhost:8080/api/users/login', {
+      email,
+      password,
+    });
+
+    if (response.data === 'Login successful!') {
+      navigate('/dashboard'); // or wherever you want to go
+    } else {
+      setError(response.data); // e.g. "Invalid email or password!"
     }
-  };
+  } catch (error) {
+    setError('Something went wrong. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="login-page">

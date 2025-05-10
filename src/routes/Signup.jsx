@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+
 import '../styles/signup.css';
 import logo from '/public/logo-gameing.png'; // Adjusted import path
 
@@ -30,16 +31,15 @@ const Signup = () => {
 
     setIsLoading(true);
 
-    try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup', formData);
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard');
-    } catch (error) {
-      const message = error.response?.data?.message || 'Registration failed. Please try again.';
-      setError(message);
-    } finally {
-      setIsLoading(false);
-    }
+   try {
+  const response = await axios.post('http://localhost:8080/api/auth/signup', formData);
+  localStorage.setItem('token', response.data.token);
+  navigate('/login'); // Redirect to login after signup
+} catch (error) {
+  const message = error.response?.data?.message || 'Registration failed. Please try again.';
+  setError(message);
+}
+
   };
 
   return (
