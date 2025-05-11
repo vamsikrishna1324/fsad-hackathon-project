@@ -42,7 +42,7 @@ const Play = () => {
       title: 'Solitaire',
       category: 'card',
       players: '1',
-      thumbnail: 'sol.jpg',
+      thumbnail: '/sol.jpg',
       embedUrl: 'https://www.solitaire.com/',
       multiplayer: false,
       rules: 'Classic solitaire. Move all cards to the foundation piles.'
