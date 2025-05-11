@@ -1,8 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/Navbar.css'; // Import the separated CSS
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -11,6 +25,7 @@ const Navbar = () => {
           <span className="logo-text">PROARENA</span>
         </Link>
       </div>
+
       <div className="navbar-links">
         <Link to="/play">💫Play</Link>
         <Link to="/leaderboard">🏆Leaderboard</Link>
@@ -19,9 +34,14 @@ const Navbar = () => {
         <Link to="/business">🤝Business</Link>
         <Link to="/more">🌈More</Link>
       </div>
+
       <div className="navbar-actions">
         <Link to="/create-tournament" className="btn-create">Create Tournament</Link>
-        <Link to="/login" className="btn-login">LOGIN/SIGN UP</Link>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="btn-logout">Logout</button>
+        ) : (
+          <Link to="/login" className="btn-login">LOGIN/SIGN UP</Link>
+        )}
       </div>
     </nav>
   );

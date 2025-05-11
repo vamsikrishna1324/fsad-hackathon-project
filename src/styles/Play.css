@@ -1,267 +1,867 @@
+/* Base Styles with Gradient Background */
 .play-page {
-    padding: 2rem;
-    background: #1a1a1a;
-    min-height: 100vh;
-    color: white;
-  }
-  
-  .play-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .game-categories button {
-    margin: 0 1rem;
-    padding: 0.5rem 1.5rem;
-    border: none;
-    border-radius: 20px;
-    background: #2a2a2a;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .game-categories button.active {
-    background: #00c8a3;
-    color: black;
-  }
-  
+  padding: 2rem;
+  min-height: 100vh;
+  color: white;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Glassmorphism Effect for Containers */
+.play-container, .game-modal .modal-content, .social-sidebar, 
+.game-lobby, .available-rooms, .game-session {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Header with Animated Gradient */
+.play-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.play-header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Category Buttons with Hover Effects */
+.game-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.game-categories button {
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(0, 201, 255, 0.1);
+  color: #00c9ff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-categories button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 201, 255, 0.2), transparent);
+  transition: all 0.5s;
+}
+
+.game-categories button:hover::before {
+  left: 100%;
+}
+
+.game-categories button.active {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+  box-shadow: 0 4px 15px rgba(0, 201, 255, 0.4);
+}
+
+/* Game Grid with 3D Card Effect */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 2rem;
+  perspective: 1000px;
+}
+
+.game-card {
+  background: rgba(32, 58, 67, 0.6);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02) rotateX(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.game-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7));
+  z-index: 1;
+}
+
+.game-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.game-card:hover img {
+  transform: scale(1.1);
+}
+
+.game-info {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.game-info h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+/* Game Type Badges */
+.game-type {
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-type.multiplayer {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+}
+
+.game-type.singleplayer {
+  background: linear-gradient(90deg, #da22ff, #9733ee);
+  color: white;
+}
+
+/* Progress Indicator */
+.game-progress {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.game-progress::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00c9ff;
+  margin-right: 6px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(0.95); opacity: 1; }
+}
+
+/* Social Sidebar with Neumorphism */
+.social-sidebar {
+  padding: 1.8rem;
+  margin-left: 2rem;
+  background: rgba(32, 58, 67, 0.6);
+  border-radius: 20px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2),
+             -8px -8px 16px rgba(255, 255, 255, 0.05);
+}
+
+.friends-list h3, .chat-box h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #00c9ff;
+  display: flex;
+  align-items: center;
+}
+
+.friends-list h3::before, .chat-box h3::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00c9ff;
+  margin-right: 10px;
+  box-shadow: 0 0 10px #00c9ff;
+}
+
+/* Friend Items with Interactive Effects */
+.friend-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.friend-item:hover {
+  background: rgba(0, 201, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.friend-avatar {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+/* Status Indicators */
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.status-dot.online {
+  background: #00ff9d;
+  box-shadow: 0 0 10px #00ff9d;
+}
+
+.status-dot.offline {
+  background: #ff6b6b;
+}
+
+.status-dot.online::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid #00ff9d;
+  animation: ripple 1.5s infinite;
+  opacity: 0;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Chat Interface */
+.chat-messages {
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #00c9ff transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #00c9ff;
+  border-radius: 3px;
+}
+
+.message {
+  margin-bottom: 1.2rem;
+  padding: 0.8rem;
+  background: rgba(32, 58, 67, 0.6);
+  border-radius: 8px;
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message strong {
+  color: #00c9ff;
+}
+
+.message-time {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.3rem;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.chat-input input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 201, 255, 0.3);
+}
+
+.chat-input button {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+  border: none;
+  padding: 0 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.chat-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 201, 255, 0.4);
+}
+
+/* Game Modal with Floating Effect */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 32, 39, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  max-width: 500px;
+  width: 90%;
+  padding: 2.5rem;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00c9ff, #92fe9d, #00c9ff);
+  background-size: 200%;
+  z-index: -1;
+  border-radius: 18px;
+  animation: gradientBorder 3s ease infinite;
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.modal-thumbnail {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.game-description {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-actions button {
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.modal-actions button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.create-room {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+}
+
+.quick-play {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+  color: white;
+}
+
+.play-solo {
+  background: linear-gradient(90deg, #da22ff, #9733ee);
+  color: white;
+}
+
+.close-modal {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Game Session Styles */
+.game-session {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.5s;
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-header h2 {
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.session-code {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 201, 255, 0.1);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.session-code strong {
+  color: #00c9ff;
+}
+
+.session-code button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.session-code button:hover {
+  background: rgba(0, 201, 255, 0.2);
+}
+
+.leave-game {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.leave-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Lobby Screen */
+.lobby-screen {
+  text-align: center;
+  padding: 3rem;
+  margin-top: 1rem;
+  border-radius: 16px;
+  background: rgba(32, 58, 67, 0.6);
+}
+
+.lobby-screen h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #00c9ff;
+}
+
+.player-list {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem auto;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  min-width: 250px;
+  transition: all 0.3s;
+}
+
+.player-item:hover {
+  background: rgba(0, 201, 255, 0.1);
+  transform: scale(1.02);
+}
+
+.player-status {
+  font-size: 1.2rem;
+}
+
+.start-game {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-game:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.start-game:not(:disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 201, 255, 0.3);
+}
+
+.start-game:not(:disabled)::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+/* Game Embed Container */
+.game-embed-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin-top: 1.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 201, 255, 0.3);
+}
+
+.game-embed-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Single Player Controls */
+.single-player-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.single-player-controls button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.single-player-controls button:first-child {
+  background: rgba(0, 201, 255, 0.8);
+  color: white;
+}
+
+.single-player-controls button:last-child {
+  background: rgba(255, 107, 107, 0.8);
+  color: white;
+}
+
+.single-player-controls button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Available Rooms Section */
+.available-rooms {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(32, 58, 67, 0.6);
+  border-radius: 16px;
+}
+
+.available-rooms h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #00c9ff;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.available-rooms h3::before {
+  content: '🕹';
+}
+
+.room-list {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.room-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.room-card:hover {
+  background: rgba(0, 201, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.room-info {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.room-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.room-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-details h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.room-details p {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.room-card button {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  color: #0f2027;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.room-card button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.room-card button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 201, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
   .play-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 2rem;
-  }
-  
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .game-card {
-    background: #2a2a2a;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-  
-  .game-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .game-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .game-info {
-    padding: 1rem;
-  }
-  
-  .game-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  
-  .play-button {
-    background: #00c8a3;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    color: black;
+    grid-template-columns: 1fr;
   }
   
   .social-sidebar {
-    background: #2a2a2a;
+    margin-top: 3rem;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .play-page {
     padding: 1rem;
-    border-radius: 10px;
   }
   
-  .friends-list {
-    margin-bottom: 2rem;
+  .play-header h1 {
+    font-size: 2.2rem;
   }
   
-  .friend-item {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-  }
-  
-  .status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 1rem;
-  }
-  
-  .status-dot.online {
-    background: #00c8a3;
-  }
-  
-  .status-dot.offline {
-    background: #666;
-  }
-  
-  .invite-button {
-    margin-left: auto;
-    background: #333;
-    color: white;
-    border: 1px solid #00c8a3;
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .game-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .game-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
   
   .modal-content {
-    background: #2a2a2a;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .modal-options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .modal-options button {
-    padding: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-  }
-  
-  .create-room {
-    background: #00c8a3;
-    color: black;
-  }
-  
-  .join-room {
-    background: #333;
-    color: white;
-    border: 2px solid #00c8a3 !important;
-  }
-  /* Game Embed Styles */
-.game-embed-container {
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    margin-top: 1rem;
-    border: 2px solid #00c8a3;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .game-embed-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  
-  /* Game Session Styles */
-  .game-session {
-    padding: 2rem;
+    padding: 1.5rem;
   }
   
   .session-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
   }
   
   .session-code {
-    background: #2a2a2a;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  /* Player Lobby */
-  .lobby-screen {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .player-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 2rem auto;
-    max-width: 300px;
-  }
-  
-  .player-item {
-    background: #2a2a2a;
-    padding: 0.8rem;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  /* Enhanced Game Cards */
-  .game-card {
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  }
-  
-  .game-meta {
-    display: flex;
+    width: 100%;
     justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #aaa;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-categories {
+    gap: 0.5rem;
   }
   
-  .multiplayer-tag {
-    background: #00c8a322;
-    padding: 0.2rem 0.5rem;
-    border-radius: 10px;
+  .game-categories button {
+    padding: 0.5rem 1rem;
     font-size: 0.8rem;
   }
   
-  .multiplayer-tag.active {
-    background: #00c8a3;
-    color: black;
+  .game-grid {
+    grid-template-columns: 1fr;
   }
   
-  /* Friend List Enhancements */
-  .friend-avatar {
-    font-size: 1.2rem;
-    margin-right: 0.5rem;
+  .modal-actions button {
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
   
-  .friend-name {
-    flex-grow: 1;
+  .single-player-controls {
+    flex-direction: column;
+    right: 10px;
+    bottom: 10px;
   }
+  
+  .single-player-controls button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}

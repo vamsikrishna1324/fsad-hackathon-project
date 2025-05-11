@@ -28,6 +28,7 @@ const App = () => {
       <Route path="/more" element={<More />} />
       <Route path="/create-tournament" element={<CreateTournament />} />
       <Route path="/play" element={<Play />} />
+       <Route path="/home" element={<Home />} />
     </Routes>
   );
 };

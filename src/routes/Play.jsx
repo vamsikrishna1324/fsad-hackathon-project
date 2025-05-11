@@ -7,97 +7,166 @@ const Play = () => {
   const [gameSession, setGameSession] = useState(null);
   const [friends] = useState([
     { id: 1, name: 'ProGamer99', online: true, avatar: '👾' },
-    { id: 2, name: 'ChessMaster', online: true, avatar: '♟️' },
+    { id: 2, name: 'ChessMaster', online: true, avatar: '♟' },
     { id: 3, name: 'PokerFace', online: false, avatar: '🃏' },
   ]);
   const [chatMessages, setChatMessages] = useState([
     { user: 'System', text: 'Welcome to PROARENA!', time: '12:00 PM' }
   ]);
+  const [gameProgress, setGameProgress] = useState({});
+  const [localRooms, setLocalRooms] = useState([]);
 
-  // 20+ games with embedded playable URLs
   const games = [
     {
       id: 1,
-      title: 'Battle Royale',
-      category: 'action',
-      players: '2-100',
-      thumbnail: 'https://img.icons8.com/color/96/000000/battle.png',
-      embedUrl: 'https://i.simmer.io/@StaticPH/battle-royale',
-      multiplayer: true
-    },
-    {
-      id: 2,
       title: 'Chess',
       category: 'strategy',
       players: '2',
-      thumbnail: 'https://img.icons8.com/color/96/000000/chess.png',
+      thumbnail: '/chess.jpg',
       embedUrl: 'https://www.chess.com/play/computer',
-      multiplayer: true
+      multiplayer: true,
+      rules: 'Standard chess rules. Checkmate your opponent to win!'
+    },
+    {
+      id: 2,
+      title: 'Poker',
+      category: 'card',
+      players: '2-8',
+      thumbnail: '/poker.jpg',
+      embedUrl: 'https://www.pokernow.club/',
+      multiplayer: true,
+      rules: 'Texas Holdem rules. The best 5-card hand wins!'
     },
     {
       id: 3,
-      title: 'Texas Holdem',
+      title: 'Solitaire',
       category: 'card',
-      players: '2-8',
-      thumbnail: 'https://img.icons8.com/color/96/000000/poker.png',
-      embedUrl: 'https://www.pokernow.club/',
-      multiplayer: true
+      players: '1',
+      thumbnail: 'sol.jpg',
+      embedUrl: 'https://www.solitaire.com/',
+      multiplayer: false,
+      rules: 'Classic solitaire. Move all cards to the foundation piles.'
     },
-    // Add 17 more games...
     {
       id: 4,
-      title: '8-Ball Pool',
-      category: 'sports',
-      players: '2',
-      thumbnail: 'https://img.icons8.com/color/96/000000/billiards.png',
-      embedUrl: 'https://www.miniclip.com/games/8-ball-pool-multiplayer/en/',
-      multiplayer: true
+      title: '2048',
+      category: 'puzzle',
+      players: '1',
+      thumbnail: '/2048.jpg',
+      embedUrl: 'https://play2048.co/',
+      multiplayer: false,
+      rules: 'Combine tiles to reach 2048. Use arrow keys to move.'
     },
     {
       id: 5,
-      title: 'Tetris',
+      title: 'Crossword',
       category: 'puzzle',
-      players: '1-2',
-      thumbnail: 'https://img.icons8.com/color/96/000000/tetris.png',
-      embedUrl: 'https://tetris.com/play-tetris',
-      multiplayer: true
+      players: '1',
+      thumbnail: '/cross.jpg',
+      embedUrl: 'https://www.nytimes.com/crosswords',
+      multiplayer: false,
+      rules: 'Fill in the grid with words matching the clues.'
+    },
+    {
+      id: 6,
+      title: 'Sudoku',
+      category: 'puzzle',
+      players: '1',
+      thumbnail: '/sudoku.jpg',
+      embedUrl: 'https://sudoku.com/',
+      multiplayer: false,
+      rules: 'Fill the grid so each row, column and 3x3 box contains 1-9.'
     }
   ];
 
+  useEffect(() => {
+    const savedProgress = JSON.parse(localStorage.getItem('gameProgress')) || {};
+    setGameProgress(savedProgress);
+
+    const savedRooms = JSON.parse(localStorage.getItem('localRooms')) || [];
+    setLocalRooms(savedRooms);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('gameProgress', JSON.stringify(gameProgress));
+    localStorage.setItem('localRooms', JSON.stringify(localRooms));
+  }, [gameProgress, localRooms]);
+
   const startGameSession = (game) => {
-    setGameSession({
-      game,
-      code: Math.random().toString(36).substring(2, 8).toUpperCase(),
-      players: [{ id: 1, name: 'You', ready: true }],
-      started: false
-    });
+    if (game.multiplayer) {
+      const roomCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const newRoom = {
+        code: roomCode,
+        game,
+        players: ['You'],
+        started: false,
+        createdAt: new Date().toISOString()
+      };
+      setLocalRooms([...localRooms, newRoom]);
+      setGameSession(newRoom);
+    } else {
+      setGameSession({
+        game,
+        started: true,
+        progress: gameProgress[game.id] || 0
+      });
+    }
+    setSelectedGame(null);
+  };
+
+  const joinGameRoom = (roomCode) => {
+    const room = localRooms.find(r => r.code === roomCode);
+    if (room) {
+      const updatedRoom = {
+        ...room,
+        players: [...room.players, 'Friend']
+      };
+      setLocalRooms(localRooms.map(r => r.code === roomCode ? updatedRoom : r));
+      setGameSession(updatedRoom);
+    }
   };
 
   const inviteFriend = (friendId) => {
-    alert(`Invitation sent to ${friends.find(f => f.id === friendId).name}`);
-    // In a real app: Send WebSocket invitation
+    const friend = friends.find(f => f.id === friendId);
+    alert(`Invitation sent to ${friend.name}`);
   };
 
   const sendChatMessage = (e) => {
     e.preventDefault();
     const message = e.target.message.value;
     if (message.trim()) {
-      setChatMessages([...chatMessages, 
-        { user: 'You', text: message, time: new Date().toLocaleTimeString() }
-      ]);
+      const newMessage = {
+        user: 'You',
+        text: message,
+        time: new Date().toLocaleTimeString()
+      };
+      setChatMessages([...chatMessages, newMessage]);
       e.target.reset();
     }
   };
 
+  const saveGameProgress = (gameId, progress) => {
+    setGameProgress({
+      ...gameProgress,
+      [gameId]: progress
+    });
+  };
+
+  const endGameSession = () => {
+    if (gameSession?.game?.multiplayer) {
+      setLocalRooms(localRooms.filter(r => r.code !== gameSession.code));
+    }
+    setGameSession(null);
+  };
+
   return (
     <div className="play-page">
-      {/* Game Lobby */}
       {!gameSession && (
         <>
           <div className="play-header">
             <h1>🎮 PROARENA Game Lobby</h1>
             <div className="game-categories">
-              {['all', 'action', 'strategy', 'card', 'puzzle', 'sports'].map(cat => (
+              {['all', 'strategy', 'card', 'puzzle'].map(cat => (
                 <button
                   key={cat}
                   className={activeCategory === cat ? 'active' : ''}
@@ -121,14 +190,42 @@ const Play = () => {
                         <h3>{game.title}</h3>
                         <div className="game-meta">
                           <span>👥 {game.players}</span>
-                          <span className={`multiplayer-tag ${game.multiplayer ? 'active' : ''}`}>
+                          <span className={`game-type ${game.multiplayer ? 'multiplayer' : 'singleplayer'}`}>
                             {game.multiplayer ? 'Multiplayer' : 'Single Player'}
                           </span>
+                          {gameProgress[game.id] && !game.multiplayer && (
+                            <span className="game-progress">Progress: {gameProgress[game.id]}%</span>
+                          )}
                         </div>
                       </div>
                     </div>
                   ))}
               </div>
+
+              {localRooms.length > 0 && (
+                <div className="available-rooms">
+                  <h3>Available Multiplayer Rooms</h3>
+                  <div className="room-list">
+                    {localRooms.map(room => (
+                      <div key={room.code} className="room-card">
+                        <div className="room-info">
+                          <img src={room.game.thumbnail} alt={room.game.title} />
+                          <div>
+                            <h4>{room.game.title}</h4>
+                            <p>Players: {room.players.length}/{room.game.players.split('-')[1] || 2}</p>
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => joinGameRoom(room.code)}
+                          disabled={room.players.length >= parseInt(room.game.players.split('-')[1] || 2)}
+                        >
+                          Join
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="social-sidebar">
@@ -140,13 +237,7 @@ const Play = () => {
                     <span className="friend-name">{friend.name}</span>
                     <span className={`status-dot ${friend.online ? 'online' : 'offline'}`}></span>
                     {friend.online && (
-                      <button 
-                        className="invite-button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          inviteFriend(friend.id);
-                        }}
-                      >
+                      <button className="invite-button" onClick={() => inviteFriend(friend.id)}>
                         Invite
                       </button>
                     )}
@@ -165,12 +256,7 @@ const Play = () => {
                   ))}
                 </div>
                 <form onSubmit={sendChatMessage} className="chat-input">
-                  <input 
-                    type="text" 
-                    name="message" 
-                    placeholder="Type a message..." 
-                    autoComplete="off"
-                  />
+                  <input type="text" name="message" placeholder="Type a message..." autoComplete="off" />
                   <button type="submit">Send</button>
                 </form>
               </div>
@@ -179,85 +265,32 @@ const Play = () => {
         </>
       )}
 
-      {/* Game Selection Modal */}
       {selectedGame && !gameSession && (
         <div className="game-modal">
           <div className="modal-content">
             <h2>{selectedGame.title}</h2>
             <img src={selectedGame.thumbnail} alt={selectedGame.title} className="modal-thumbnail" />
-            <p>Players: {selectedGame.players}</p>
-            
+            <p className="game-description">{selectedGame.rules}</p>
             <div className="modal-actions">
-              {selectedGame.multiplayer ? (
-                <>
-                  <button className="create-room" onClick={() => startGameSession(selectedGame)}>
-                    🎮 Create Private Room
-                  </button>
-                  <button className="quick-play">
-                    ⚡ Quick Play (Random Opponent)
-                  </button>
-                </>
-              ) : (
-                <button className="play-solo" onClick={() => setGameSession({ game: selectedGame, started: true })}>
-                  🕹️ Play Solo
-                </button>
-              )}
-              <button className="close-modal" onClick={() => setSelectedGame(null)}>
-                Close
-              </button>
+              <button className="start-button" onClick={() => startGameSession(selectedGame)}>Start Game</button>
+              <button className="cancel-button" onClick={() => setSelectedGame(null)}>Cancel</button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Active Game Session */}
       {gameSession && (
         <div className="game-session">
-          <div className="session-header">
-            <h2>Playing: {gameSession.game.title}</h2>
-            {gameSession.code && (
-              <div className="session-code">
-                Room Code: <strong>{gameSession.code}</strong>
-                <button onClick={() => navigator.clipboard.writeText(gameSession.code)}>
-                  Copy
-                </button>
-              </div>
-            )}
-            <button 
-              className="leave-game"
-              onClick={() => setGameSession(null)}
-            >
-              Leave Game
-            </button>
+          <div className="game-header">
+            <h2>Now Playing: {gameSession.game.title}</h2>
+            <button onClick={endGameSession}>End Session</button>
           </div>
-
-          {!gameSession.started ? (
-            <div className="lobby-screen">
-              <h3>👥 Waiting for players...</h3>
-              <div className="player-list">
-                {gameSession.players.map(player => (
-                  <div key={player.id} className="player-item">
-                    <span className="player-status">{player.ready ? '✅' : '❌'}</span>
-                    {player.name}
-                  </div>
-                ))}
-              </div>
-              <button 
-                className="start-game"
-                onClick={() => setGameSession({...gameSession, started: true})}
-              >
-                Start Game
-              </button>
-            </div>
-          ) : (
-            <div className="game-embed-container">
-              <iframe 
-                src={gameSession.game.embedUrl} 
-                title={gameSession.game.title}
-                allowFullScreen
-              />
-            </div>
-          )}
+          <iframe 
+            title={gameSession.game.title}
+            src={gameSession.game.embedUrl}
+            className="game-frame"
+            allowFullScreen
+          ></iframe>
         </div>
       )}
     </div>

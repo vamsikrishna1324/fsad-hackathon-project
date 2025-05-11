@@ -1,0 +1,263 @@
+/* More Page Styles */
+.more-page {
+  padding: 2rem;
+  background: #0a0a0a;
+  color: white;
+  min-height: 100vh;
+}
+
+.more-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.more-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #00ffd5;
+}
+
+.more-header p {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.more-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.sidebar {
+  width: 250px;
+  background: #2a2a2a;
+  padding: 1.5rem 0;
+}
+
+.sidebar-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-btn:hover {
+  background: rgba(0, 255, 213, 0.1);
+  color: #00ffd5;
+}
+
+.sidebar-btn.active {
+  background: rgba(0, 255, 213, 0.2);
+  color: #00ffd5;
+  border-left: 3px solid #00ffd5;
+}
+
+.tab-icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.tab-content h2 {
+  color: #00ffd5;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333;
+}
+
+/* Settings Tab */
+.setting-item {
+  margin-bottom: 1.5rem;
+}
+
+.setting-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+.setting-item select, 
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item textarea {
+  width: 100%;
+  padding: 0.8rem;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  color: white;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00ffd5;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Buttons */
+.save-btn, .submit-btn {
+  background: #00ffd5;
+  color: black;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+}
+
+.save-btn:hover, .submit-btn:hover {
+  background: #00ccaa;
+  transform: translateY(-2px);
+}
+
+/* Games Tab */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.game-card {
+  background: #2a2a2a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 213, 0.1);
+}
+
+.game-icon {
+  width: 60px;
+  height: 60px;
+  background: #00ffd5;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+}
+
+/* FAQ Items */
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.faq-item h3 {
+  color: #00ffd5;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Form */
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+/* Language Options */
+.language-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+}
+
+.language-option input {
+  margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .more-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+  
+  .sidebar-btn {
+    flex: 0 0 auto;
+    padding: 0.8rem 1rem;
+    white-space: nowrap;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
